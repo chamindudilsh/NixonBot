@@ -1,0 +1,6 @@
+{
+    "token": "OTIwMzE4NjI3NzU0OTM4NDE4.Ybingw.uX54B-0swlw6txr3e8Qj2sfK8DQ",
+    "prefix": "%",
+    "mongooseConnectionString": "mongodb+srv://phoenix:Virgo6356@discord-bot.c7zde.mongodb.net/Data",
+    "version": "1.0.0"
+}
