@@ -19,10 +19,11 @@ module.exports = {
         const balanceProfile = await Economy.createBalance(member.user);
 
         try {
-            await Balance.findByIdAndUpdate({ _id:balanceProfile._id }, { wallet: balanceProfile.wallet += amount });
+            await Balance.findOneAndUpdate({ _id:balanceProfile._id }, { wallet: balanceProfile.wallet += amount });
         } catch (e) {
             console.log(e);
             message.channel.send({ content: `An Error Occured!` });
+            return;
         }
 
         message.channel.send({ content: `Added ${amount} to ${member.user.tag}'s wallet.` });
