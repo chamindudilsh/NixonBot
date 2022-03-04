@@ -27,7 +27,7 @@ module.exports = {
                 new MessageButton()
                     .setLabel('Support')
                     .setStyle('LINK')
-                    .setURL('https://discord.gg/vfexaskEBA')
+                    .setURL('https://discord.gg/K5qA3xV53w')
             );
 
         message.channel.send({ embeds: [inviteEmbed], components: [row] });
