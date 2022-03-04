@@ -1,0 +1,28 @@
+{
+  "name": "nixon-bot",
+  "version": "2.0.1",
+  "description": "Nixon Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@iamtraction/google-translate": "^1.1.2",
+    "axios": "^0.25.0",
+    "discord-giveaways": "^5.1.1",
+    "discord-image-generation": "^1.4.12",
+    "discord.js": "^13.6.0",
+    "express": "^4.17.2",
+    "glob": "^7.2.0",
+    "got": "^10.0.1",
+    "mathjs": "^10.1.1",
+    "moment": "^2.29.1",
+    "mongoose": "^6.1.7",
+    "ms": "^2.1.3",
+    "simply-djs": "^2.5.2",
+    "weather-js": "^2.0.0"
+  }
+}
