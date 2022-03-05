@@ -11,8 +11,19 @@ async function createBalance (member) {
     };
 };
 
+async function checkWallet (userID) {
+    let balanceProfile = await Balance.findOne({ memberId: userID });
+    if (balanceProfile) {
+        return balanceProfile.wallet;
+    } else {
+        balanceProfile = await new Balance({ memberId: userID });
+        await balanceProfile.save().catch(err => console.log(err));
+        return balanceProfile.wallet;
+    };
+}
+
 async function addBalance (member, amount) {
-    Balance.findOne({ memberId: member.id }, async(err,data) =>{
+    Balance.findOne({ memberId: member.id }, async(err,data) => {
         if (err) throw err;
         if (data) {
             data.wallet += amount;
@@ -25,7 +36,7 @@ async function addBalance (member, amount) {
 };
 
 async function removeBalance (member, amount) {
-    Balance.findOne({ memberId: member.id }, async(err,data) =>{
+    Balance.findOne({ memberId: member.id }, async(err,data) => {
         if (err) throw err;
         if (data) {
             data.wallet -= amount;
@@ -45,5 +56,6 @@ module.exports = {
     createBalance,
     addBalance,
     removeBalance,
+    checkWallet,
     randomAmount
 }

@@ -16,7 +16,9 @@ module.exports = {
     run: async (client, message, args) => {
         let member = message.mentions.members.first() || message.member;
         let rng = Economy.randomAmount(1000,6969);
-        const names = ["Alex", "Hagrid", "Poseidon", "Putin", "Selena Gomez", "Kim Jom Un", "Donald Trump", "Pewds", "Dream", "Kermit", "Emma Watson", "Itsuki San"]
+        const names = ["Alex", "Hagrid", "Poseidon", "Putin", "Selena Gomez", "Kim Jom Un", "Donald Trump", "Pewds", "Dream", "Kermit", "Emma", "Itsuki San", "Camila", "Justin", "Alan", "Steve Jobs"
+            , "Mark Zuckerburg"];
+            
         await Economy.addBalance(member.user, rng).catch((e) => {
             console.log(e);
             message.reply({ content: `An Error Occured!` });
