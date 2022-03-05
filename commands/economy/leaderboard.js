@@ -38,9 +38,9 @@ module.exports = {
             .setTitle(`Server Leaderboard`)
             .setColor('RANDOM')
             .setDescription(`${lb.join('\n')}`)
-            .setFooter({ text: `Check ur Place` })
+            .setFooter({ text: `Check if u're here` })
             .setTimestamp();
 
-        sent_msg.edit({ embeds: [lbEmbed] });
+        sent_msg.edit({ content:`Server Leaderboard`, embeds: [lbEmbed] });
     }, 
 };

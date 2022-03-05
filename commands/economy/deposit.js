@@ -46,7 +46,7 @@ module.exports = {
             await data.save().catch(err => console.log(err));           
             depEmbed.addField(`Amount`, `\`${amount}$\``, false)
             depEmbed.addField(`Bank Balance`, `\`${data.bank}$\``, false)
-        });
+        }).clone();
 
         message.reply({ embeds: [depEmbed] });
     }, 

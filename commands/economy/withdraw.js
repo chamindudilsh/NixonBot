@@ -46,7 +46,7 @@ module.exports = {
             await data.save().catch(err => console.log(err));           
             withEmbed.addField(`Amount`, `\`${amount}$\``, false)
             withEmbed.addField(`Wallet Balance`, `\`${data.wallet}$\``, false)
-        });
+        }).clone();
 
         message.reply({ embeds: [withEmbed] });
     }, 
