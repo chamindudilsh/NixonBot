@@ -1,8 +1,3 @@
-const { Message } = require("discord.js");
-/**
- * @param {Message} message 
-*/
-
 const formatString = (str) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
 
 const randomInArray = function (anArray){

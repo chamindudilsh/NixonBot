@@ -2,9 +2,9 @@ const { Message, Client } = require("discord.js");
 const Economy = require('../../utils/economy');
 
 module.exports = {
-    name: "bal-add",
+    name: "bal-remove",
     aliases: [''],
-    description: "Add money",
+    description: "Remove money",
     /**
      *
      * @param {Client} client
@@ -16,12 +16,12 @@ module.exports = {
         const amount = parseInt(args[0]);
         let member = message.mentions.members.first() || message.member;
 
-        await Economy.addBalance(member.user, amount).catch((e) => {
+        await Economy.removeBalance(member.user, amount).catch((e) => {
             console.log(e);
             message.channel.send({ content: `An Error Occured!` });
             return; 
         });
 
-        message.channel.send({ content: `Added ${amount}$ to ${member.user.username}'s wallet.` });
+        message.channel.send({ content: `Removed ${amount}$ from ${member.user.username}'s wallet.` });
     }, 
 };
