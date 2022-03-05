@@ -30,15 +30,14 @@ module.exports = {
         );
 
         const data = collection.sort((a, b) => b.bal - a.bal).first(10);
+        const lb = data.map((v, i) => {
+            return `${i+1}) ${client.users.cache.get(v.id).tag} **-** ${v.bal}$`
+        })
 
         const lbEmbed = new MessageEmbed()
             .setTitle(`Server Leaderboard`)
             .setColor('RANDOM')
-            .setDescription(
-                data.map((v, i) => {
-                    return `${i+1}) ${client.users.cache.get(v.id).tag} **-** ${v.bal}$`
-                })
-            )
+            .setDescription(`${lb}`)
             .setFooter({ text: `Check ur Place` })
             .setTimestamp();
 
