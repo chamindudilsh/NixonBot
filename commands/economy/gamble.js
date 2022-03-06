@@ -40,7 +40,7 @@ module.exports = {
                 message.reply({ content: `An Error Occured!` });
                 return;
             });
-            message.reply({ content: `Congrats, you won your bet & ${winAmount}$\nSpend them wisely.` });
+            message.reply({ content: `Congrats, you won your bet & **${winAmount.toLocaleString('en-US', {maximumFractionDigits:2})}$**\nSpend them wisely.` });
             return;
         } else {
             await Economy.removeBalance(message.author, amount).catch((e) => {
@@ -48,7 +48,7 @@ module.exports = {
                 message.reply({ content: `An Error Occured!` });
                 return;
             });
-            message.reply({ content: `Aww, you lost your bet along with ${amount}$\nBetter luck next time.` });
+            message.reply({ content: `Aww, you lost your bet along with **${amount.toLocaleString('en-US', {maximumFractionDigits:2})}$**\nBetter luck next time.` });
             return;
         }
     }, 
