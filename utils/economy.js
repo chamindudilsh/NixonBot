@@ -22,6 +22,17 @@ async function checkWallet (userID) {
     };
 }
 
+async function checkBank (userID) {
+    let balanceProfile = await Balance.findOne({ memberId: userID });
+    if (balanceProfile) {
+        return balanceProfile.bank;
+    } else {
+        balanceProfile = await new Balance({ memberId: userID });
+        await balanceProfile.save().catch(err => console.log(err));
+        return balanceProfile.bank;
+    };
+}
+
 async function addBalance (member, amount) {
     Balance.findOne({ memberId: member.id }, async(err,data) => {
         if (err) throw err;
@@ -52,10 +63,21 @@ function randomAmount(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function formatNumber (val) {
+    multiplier = val.substr(-1).toLowerCase();
+    if (multiplier == "k")
+      return parseFloat(val) * 1000;
+    else if (multiplier == "m")
+      return parseFloat(val) * 1000000;
+    else return parseInt(val);
+}
+
 module.exports = {
     createBalance,
     addBalance,
     removeBalance,
     checkWallet,
+    checkBank,
+    formatNumber,
     randomAmount
 }

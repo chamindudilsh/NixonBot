@@ -1,5 +1,6 @@
 const { Message, Client, MessageEmbed } = require("discord.js");
 const Balance = require('../../models/schemas/balance');
+const Economy = require('../../utils/economy');
 
 module.exports = {
     name: "deposit",
@@ -13,7 +14,15 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, message, args) => {
-        let amount = args[0];
+        const bal = await Economy.checkWallet(message.author.id);
+        if(!args[0]) return message.reply({ content: `You can't deposit nothing.` });
+        let amount;
+        if (args[0].toLowerCase() === 'max' || args[0].toLowerCase() === 'all') {
+            amount = bal;
+        } else {
+            amount = Economy.formatNumber(args[0]);
+        }
+        if (isNaN(amount)) return message.reply({ content:`Give me a valid amount to deposit.` });
         const depEmbed = new MessageEmbed()
             .setTitle(`Deposit`)
             .setColor('RANDOM')
@@ -24,29 +33,20 @@ module.exports = {
             if (err) throw err;
 
             if (data) {
-                if (amount === 'max') {
-                    amount = data.wallet;
-                } else {
-                    amount = parseInt(args[0]);
-                }
                 if (amount > data.wallet) return message.reply({ content: `You only have ${data.wallet}$ in your Wallet, you can't deposit ${amount}$` });
                 data.wallet -= amount;
                 data.bank += amount;
             } else {
                 data = await new Balance({ memberId: member.id });
-                if (amount === 'max') {
-                    amount = data.wallet;
-                } else {
-                    amount = parseInt(args[0]);
-                }
                 if (amount > data.wallet) return message.reply({ content: `You only have ${data.wallet}$ in your Wallet, you can't deposit ${amount}$` });
                 data.wallet -= amount;
                 data.bank += amount;
             }
             await data.save().catch(err => console.log(err));           
-            depEmbed.addField(`Amount`, `\`${amount}$\``, false)
-            depEmbed.addField(`Bank Balance`, `\`${data.bank}$\``, false)
         }).clone();
+        const Bankbal = await Economy.checkBank(message.author.id);
+        depEmbed.addField(`Amount`, `\`${amount}$\``, false)
+        depEmbed.addField(`Bank Balance`, `\`${Bankbal}$\``, false)
 
         message.reply({ embeds: [depEmbed] });
     }, 

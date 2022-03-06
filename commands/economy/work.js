@@ -15,7 +15,7 @@ module.exports = {
      */
     run: async (client, message, args) => {
         const jobs = ["Programmer", "Waiter", "Doctor", "Engineer", "Mechanic", "Builder", "Cleaner", "Tutor", "Actor", "Discord Mod"]
-        let rng = Economy.randomAmount(5000, 15000);
+        let rng = Math.floor(Economy.randomAmount(5, 15) * 1000);
         await Economy.addBalance(message.author, rng).catch((e) => {
             console.log(e);
             message.reply({ content: `An Error Occured!` });
