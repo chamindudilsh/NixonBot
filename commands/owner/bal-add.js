@@ -13,7 +13,7 @@ module.exports = {
      */
     run: async (client, message, args) => {
         if (message.author.id !== client.config.owner) return;
-        const amount = parseInt(args[0]);
+        const amount = Economy.formatNumber(args[0]);
         let member = message.mentions.members.first() || message.member;
 
         await Economy.addBalance(member.user, amount).catch((e) => {

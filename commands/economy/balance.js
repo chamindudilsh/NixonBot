@@ -18,7 +18,7 @@ module.exports = {
         const balEmbed = new MessageEmbed()
             .setTitle(`${member.user.username}'s Balance`)
             .setColor(member.displayHexColor)
-            .setDescription(`Wallet: ${balanceProfile.wallet}$\nBank: ${balanceProfile.bank}$`)
+            .setDescription(`Wallet: ${balanceProfile.wallet.toLocaleString('en-US', {maximumFractionDigits:2})}$\nBank: ${balanceProfile.bank.toLocaleString('en-US', {maximumFractionDigits:2})}$`)
             .setFooter({ text: `Stonks` })
             .setTimestamp();
 

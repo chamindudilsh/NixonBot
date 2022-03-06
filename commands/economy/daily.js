@@ -22,7 +22,7 @@ module.exports = {
         const dailyEmbed = new MessageEmbed()
             .setTitle(`Daily`)
             .setColor('RANDOM')
-            .setDescription(`You Claimed your 10000$ Daily.`)
+            .setDescription(`You Claimed your 10,000$ Daily.`)
             .setFooter({ text: `Come again tommorow.` })
             .setTimestamp();
 

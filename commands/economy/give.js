@@ -24,7 +24,7 @@ module.exports = {
         if (isNaN(amount)) return message.reply({ content:`Give me a valid amount to share.` });
         const member = message.mentions.members.first() || message.guild.members.cache.get(args[1]);
         if (!member) return message.reply({ content: `You can't share to no one.` });
-        if (amount > bal) return message.reply({ content: `You only have ${bal}$ in your wallet. You can't share ${amount}$` });
+        if (amount > bal) return message.reply({ content: `You only have ${bal}$ in your wallet. You can't share ${amount.toLocaleString('en-US', {maximumFractionDigits:2})}$` });
         if (message.author.id === member.user.id) return message.reply({ content: `Nice try sharing yourself.` });
         await Economy.addBalance(member.user, amount).catch((e) => {
             console.log(e);
@@ -44,8 +44,8 @@ module.exports = {
         const shareEmbed = new MessageEmbed()
             .setTitle(`Share`)
             .setColor('RANDOM')
-            .addField(`Your Balance`, `\`${newBal}$\``, true)
-            .addField(`${member.user.username}'s Balance`, `\`${sharedBal}$\``, true)
+            .addField(`Your Balance`, `\`${newBal.toLocaleString('en-US', {maximumFractionDigits:2})}$\``, true)
+            .addField(`${member.user.username}'s Balance`, `\`${sharedBal.toLocaleString('en-US', {maximumFractionDigits:2})}$\``, true)
             .setFooter({ text: `Sharing is caring.` })
             .setTimestamp();
 

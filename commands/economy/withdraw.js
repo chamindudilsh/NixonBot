@@ -33,12 +33,12 @@ module.exports = {
             if (err) throw err;
 
             if (data) {
-                if (amount > data.bank) return message.reply({ content: `You only have ${data.bank}$ in your Bank, you can't withdraw ${amount}$` });
+                if (amount > data.bank) return message.reply({ content: `You only have ${data.bank}$ in your Bank, you can't withdraw ${amount.toLocaleString('en-US', {maximumFractionDigits:2})}$` });
                 data.wallet += amount;
                 data.bank -= amount;
             } else {
                 data = await new Balance({ memberId: member.id });
-                if (amount > data.bank) return message.reply({ content: `You only have ${data.bank}$ in your Bank, you can't withdraw ${amount}$` });
+                if (amount > data.bank) return message.reply({ content: `You only have ${data.bank}$ in your Bank, you can't withdraw ${amount.toLocaleString('en-US', {maximumFractionDigits:2})}$` });
                 data.wallet += amount;
                 data.bank -= amount;
             }
@@ -47,10 +47,10 @@ module.exports = {
             console.log(e);
             message.channel.send({ content: `An Error Occured.` });
             return;
-        })
+        });
         const walletBal = await Economy.checkWallet(message.author.id);
-        withEmbed.addField(`Amount`, `\`${amount}$\``, false)
-        withEmbed.addField(`Wallet Balance`, `\`${walletBal}$\``, false)
+        withEmbed.addField(`Amount`, `\`${amount.toLocaleString('en-US', {maximumFractionDigits:2})}$\``, false)
+        withEmbed.addField(`Wallet Balance`, `\`${walletBal.toLocaleString('en-US', {maximumFractionDigits:2})}$\``, false)
 
         message.reply({ embeds: [withEmbed] });
     }, 

@@ -25,7 +25,7 @@ module.exports = {
         const workEmbed = new MessageEmbed()
             .setTitle(`Work`)
             .setColor('RANDOM')
-            .setDescription(`You worked as a ${randomInArray(jobs)} & earned ${rng}$`)
+            .setDescription(`You worked as a ${randomInArray(jobs)} & earned ${rng.toLocaleString('en-US', {maximumFractionDigits:2})}$`)
             .setFooter({ text: `Work hourly for Stonks` })
             .setTimestamp();
 

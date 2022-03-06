@@ -33,20 +33,24 @@ module.exports = {
             if (err) throw err;
 
             if (data) {
-                if (amount > data.wallet) return message.reply({ content: `You only have ${data.wallet}$ in your Wallet, you can't deposit ${amount}$` });
+                if (amount > data.wallet) return message.reply({ content: `You only have ${data.wallet}$ in your Wallet, you can't deposit ${amount.toLocaleString('en-US', {maximumFractionDigits:2})}$` });
                 data.wallet -= amount;
                 data.bank += amount;
             } else {
                 data = await new Balance({ memberId: member.id });
-                if (amount > data.wallet) return message.reply({ content: `You only have ${data.wallet}$ in your Wallet, you can't deposit ${amount}$` });
+                if (amount > data.wallet) return message.reply({ content: `You only have ${data.wallet}$ in your Wallet, you can't deposit ${amount.toLocaleString('en-US', {maximumFractionDigits:2})}$` });
                 data.wallet -= amount;
                 data.bank += amount;
             }
             await data.save().catch(err => console.log(err));           
-        }).clone();
+        }).clone().catch((e) => {
+            console.log(e);
+            message.channel.send({ content: `An Error Occured.` });
+            return;
+        });
         const Bankbal = await Economy.checkBank(message.author.id);
-        depEmbed.addField(`Amount`, `\`${amount}$\``, false)
-        depEmbed.addField(`Bank Balance`, `\`${Bankbal}$\``, false)
+        depEmbed.addField(`Amount`, `\`${amount.toLocaleString('en-US', {maximumFractionDigits:2})}$\``, false)
+        depEmbed.addField(`Bank Balance`, `\`${Bankbal.toLocaleString('en-US', {maximumFractionDigits:2})}$\``, false)
 
         message.reply({ embeds: [depEmbed] });
     }, 
