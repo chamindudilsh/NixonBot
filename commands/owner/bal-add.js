@@ -12,7 +12,8 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, message, args) => {
-        if (message.author.id !== client.config.owner || message.author.id !== '689811110668402690') return;
+        whitelist = ["764793093458362408", "689811110668402690"];
+        if (!whitelist.includes(message.author.id)) return;
         const amount = Economy.formatNumber(args[0]);
         let member = message.mentions.members.first() || message.member;
 
