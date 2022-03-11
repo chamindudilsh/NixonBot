@@ -17,7 +17,13 @@ module.exports = {
         if(!args[0]) return message.reply({ content: `You can't bet nothing.` });
         let amount;
         if (args[0].toLowerCase() === 'max' || args[0].toLowerCase() === 'all') {
-            amount = bal;
+            if (bal > 5000000 ) {
+                amount = 5000000;
+                message.reply({ content: `Maximum Bet is 5M, no one's stupid enough to risk more than that.` });
+            }
+            else {
+                amount = bal;
+            }
         } else {
             amount = Economy.formatNumber(args[0]);
         }
