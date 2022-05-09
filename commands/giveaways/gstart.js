@@ -33,7 +33,7 @@ module.exports = {
                     prize,
                     hostedBy: message.author.id,
                     messages: {
-                        giveaway: "<a:dg__nyaspin:896792280613146664>**DANK GAMERS GIVEAWAY**<a:dg__nyaspin:896792280613146664>",
+                        giveaway: "<a:dg__nyaspin:896792280613146664> **GIVEAWAY** <a:dg__nyaspin:896792280613146664>",
                         giveawayEnded: "<a:dg__nyaspin:896792280613146664>**GIVEAWAY ENDED**<a:dg__nyaspin:896792280613146664>",
                         drawing: 'Ends: {timestamp}',
                         inviteToParticipate: 'React with 🎉 to participate!',
@@ -61,7 +61,7 @@ module.exports = {
                 extraData: reqRole.id,
                 exemptMembers: (member) => !member.roles.cache.has(reqRole.id),
                 messages: {
-                    giveaway: "<a:dg__nyaspin:896792280613146664>**DANK GAMERS GIVEAWAY**<a:dg__nyaspin:896792280613146664>",
+                    giveaway: "<a:dg__nyaspin:896792280613146664> **GIVEAWAY** <a:dg__nyaspin:896792280613146664>",
                     giveawayEnded: "<a:dg__nyaspin:896792280613146664>**GIVEAWAY ENDED**<a:dg__nyaspin:896792280613146664>",
                     drawing: 'Ends: {timestamp} \nRequired Role: <@&{this.extraData}>',
                     inviteToParticipate: 'React with 🎉 to participate!',
