@@ -24,7 +24,7 @@ module.exports = {
             let content = JSON.parse(res.body);
             if (!content.length) return message.reply({ content: `Please specify a valid Subreddit.` });
 
-            if(content[0].data.children[0].data.over_18 && !whitelist.includes(message.author.id) && message.content.toLowerCase().endsWith('-f')) {
+            if(content[0].data.children[0].data.over_18 && !whitelist.includes(message.author.id)) {
                 if (!message.channel.nsfw) {
                     const warnEmbed = new MessageEmbed()
                         .setTitle('Woah there, Stop!')
