@@ -6,8 +6,8 @@ module.exports = {
     description: "Snipe for Deleted messages",
     options: [
         {
-            name: 'Number',
-            description: '',
+            name: 'number',
+            description: 'Snipe up to',
             type: 'NUMBER',
             required: false
         }
@@ -20,7 +20,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        const num = interaction.options.getNumber('Number');
+        const num = interaction.options.getNumber('number');
         
         const snipes = client.snipes.get(interaction.channel.id);
         if (!snipes) {
