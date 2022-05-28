@@ -21,7 +21,7 @@ module.exports = {
         let minutes = Math.floor(totalSeconds / 60);
         let seconds = Math.floor(totalSeconds % 60);
         
-        let uptime = `${hours}h, ${minutes}m & ${seconds}s`;
+        let uptime = `${days}d ,${hours}h, ${minutes}m & ${seconds}s`;
         
         const statsEmbed = new MessageEmbed()
             .setTitle('Bot Stats')
