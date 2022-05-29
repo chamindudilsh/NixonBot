@@ -12,8 +12,7 @@ module.exports = {
      */
     run: async (client, message, args) => {
         if (message.author.id !== client.config.owner) return;
-        async function main() {
-            try {
+        
                 let i0 = 0;
                 let i1 = 10;
                 let page = 1;
@@ -93,10 +92,7 @@ module.exports = {
                 });
 
                 collector.on('end', collected => console.log(`Collected ${collected.size} items`));
-            } catch (e) {
-                console.log(e);
-                return;
-            }
-        }
+          return;
+
     },
 };
