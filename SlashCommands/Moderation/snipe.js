@@ -6,6 +6,13 @@ module.exports = {
     description: "Snipe for Deleted messages",
     options: [
         {
+            name: 'channel',
+            description: 'Channel to Snipe',
+            type: 'CHANNEL',
+            channelTypes: ['GUILD_TEXT'],
+            required: false
+        },
+        {
             name: 'number',
             description: 'Snipe up to',
             type: 'NUMBER',
@@ -20,9 +27,10 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
+        let channelToSnipe = interaction.options.getChannel('channel') || interaction.channel;
         const num = interaction.options.getNumber('number');
         
-        const snipes = client.snipes.get(interaction.channel.id);
+        const snipes = client.snipes.get(channelToSnipe.id);
         if (!snipes) {
             interaction.reply({ content: 'There\'s nothing to snipe.', ephemeral: true });
             return;

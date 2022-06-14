@@ -1,12 +1,16 @@
 const { Client, Collection, Intents } = require("discord.js");
 const GiveawayManagerWithOwnDatabase = require('./models/giveawayModel');
+const { Player } = require("discord-player");
+const { registerPlayerEvents } = require('./utils/music-events');
 
 const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS, 
         Intents.FLAGS.GUILD_MESSAGES, 
         Intents.FLAGS.GUILD_MESSAGE_REACTIONS, 
-        Intents.FLAGS.GUILD_MEMBERS]
+        Intents.FLAGS.GUILD_MEMBERS,
+        Intents.FLAGS.GUILD_VOICE_STATES
+    ]
 });
 
 const giveawaysManager = new GiveawayManagerWithOwnDatabase(client, {
@@ -17,6 +21,9 @@ const giveawaysManager = new GiveawayManagerWithOwnDatabase(client, {
         reaction: '🎉'
     }
 });
+
+client.player = new Player(client);
+registerPlayerEvents(client.player)
 
 module.exports = client;
 

@@ -3,7 +3,14 @@ const { Client, CommandInteraction, Permissions } = require("discord.js");
 module.exports = {
     name: "editsnipe",
     description: "Snipe for edited messages",
-    type: 'CHAT_INPUT',
+    options : [
+        {
+            name: 'channel',
+            description : 'channel to Editsnipe',
+            type: 'CHANNEL',
+            channelTypes: ['GUILD_TEXT']
+        }
+    ],
     permissions: [Permissions.FLAGS.MANAGE_MESSAGES],
     /**
      *
@@ -12,8 +19,10 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        let o_snipe = client.oeditsnipes.get(interaction.channel.id);
-        let n_snipe = client.neditsnipes.get(interaction.channel.id);
+        let channelToSnipe = interaction.options.getChannel('channel') || interaction.channel;
+
+        let o_snipe = client.oeditsnipes.get(channelToSnipe.id);
+        let n_snipe = client.neditsnipes.get(channelToSnipe.id);
         if(!o_snipe || !n_snipe) return interaction.reply({ content: "There's nothing edited.", ephemeral: true });
 
         const snipeEmbed = new MessageEmbed()

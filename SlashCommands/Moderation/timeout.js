@@ -24,7 +24,7 @@ module.exports = {
             required: true
         }
     ],
-    permissions: [ Permissions.FLAGS.ADMINISTRATOR ],
+    permissions: [ Permissions.FLAGS.MODERATE_MEMBERS ],
     /**
      *
      * @param {Client} client
@@ -32,6 +32,10 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
+        if (!interaction.guild.me.permissions.has('MODERATE_MEMBERS')) {
+            interaction.reply({ content: `I'm missing Permissions: \`TIMEOUT MEMBERS\``, ephemeral: true });
+            return;
+        }
         const user = interaction.options.getUser('user');
         const length = interaction.options.getString('length');
         const reason = interaction.options.getString('reason');
