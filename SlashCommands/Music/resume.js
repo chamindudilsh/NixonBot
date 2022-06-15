@@ -14,11 +14,8 @@ module.exports = {
     run: async (client, interaction, args) => {
         const queue = client.player.getQueue(interaction.guild.id);
 
-        if (!queue) {
+        if (!queue || !queue.playing) {
             return interaction.reply({ content: `Could not find a paused queue`, ephemeral: true });
-        }
-        if (queue.playing) {
-            return interaction.reply({ content: `I'm currently playing Music, nothing to resume.`, ephemeral: true });
         }
 
         const paused = queue.setPaused(false);
