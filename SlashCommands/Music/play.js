@@ -26,10 +26,6 @@ module.exports = {
             }
         });
 
-        if (interaction.guild.me.voice.channel) {
-            return interaction.reply({ content: `I'm already playing Music in <#${interaction.guild.me.voice.channel.id}>`, ephemeral: true });
-        }
-
         try {
             if (!queue.connection) await queue.connect(interaction.member.voice.channel);
         } catch {
@@ -45,6 +41,6 @@ module.exports = {
 
         queue.play(track);
 
-        return interaction.followUp({ content: `Loading: **${track.title}**`, ephemeral: true });
+        return interaction.followUp({ content: `**${track.title}**`, ephemeral: true });
     },
 };
