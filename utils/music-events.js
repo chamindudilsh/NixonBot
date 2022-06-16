@@ -24,7 +24,7 @@ const registerPlayerEvents = (player) => {
 
     player.on("trackAdd", (queue, track) => {
         MusicEmbed.setTitle(`<:added:986128064033456179> Track Added`)
-        MusicEmbed.setDescription(`Added ${track.title} to the queue.\nDuration: ${track.duration}\nSource: ${formatString(track.source)}`);
+        MusicEmbed.setDescription(`Added ${track.title} to the queue.\nDuration: ${track.duration}\nSource: [${formatString(track.source)}](${track.url})`);
         MusicEmbed.setFooter({ text: `Requested by ${track.requestedBy.username}` });
         queue.metadata.channel.send({ embeds:[MusicEmbed] });
     });

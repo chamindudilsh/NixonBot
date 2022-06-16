@@ -1,6 +1,7 @@
 const { Client, Collection, Intents } = require("discord.js");
 const GiveawayManagerWithOwnDatabase = require('./models/giveawayModel');
 const { Player } = require("discord-player");
+const { Reverbnation } = require("@discord-player/extractor");
 const { registerPlayerEvents } = require('./utils/music-events');
 
 const client = new Client({
@@ -23,6 +24,7 @@ const giveawaysManager = new GiveawayManagerWithOwnDatabase(client, {
 });
 
 client.player = new Player(client);
+client.player.use("reverbnation", Reverbnation);
 registerPlayerEvents(client.player)
 
 module.exports = client;

@@ -19,6 +19,19 @@ module.exports = {
         },
         {
             type: 'SUB_COMMAND',
+            name: 'remove',
+            description: 'Remove a specified Track from the Queue',
+            options: [
+                {
+                    name: 'track_number',
+                    type: 'INTEGER',
+                    description: 'Track number in the Queue',
+                    required: true
+                }
+            ]
+        },
+        {
+            type: 'SUB_COMMAND',
             name: 'clear',
             description: 'Clear the Queue',
         }        
@@ -59,10 +72,22 @@ module.exports = {
 
             interaction.reply({ embeds:[Embed] });
 
+        } else if (args[0] === 'remove') {
+            const TrackNumber = interaction.options.getInteger('track_number');
+            const QueueSize = queue.tracks.length;
+
+            if (TrackNumber > QueueSize || TrackNumber <= 0) {
+                return interaction.reply({ content: `Invalid Input!\nThere's ${QueueSize} track(s) in the Queue.`, ephemeral: true });
+            }
+            const TracktoRemove = queue.tracks[TrackNumber - 1]
+
+            let success = queue.remove(TracktoRemove);
+            interaction.reply({ content: `Removed **${success.title}** from the Queue.` })
+
         } else if (args[0] === 'clear') {
             queue.clear();
 
-            interaction.reply({ content: `Cleared the Queue!` });
+            interaction.reply({ content: `Cleared the Queue.` });
         }        
     },
 };
