@@ -73,6 +73,13 @@ module.exports = {
             interaction.reply({ embeds:[Embed] });
 
         } else if (args[0] === 'remove') {
+            if (!interaction.member.voice.channel) {
+                return interaction.reply({ content: "<:warn:986127753990529065> You must join a Voice Channel to use this command.", ephemeral: true });
+            }
+            if (interaction.member.voice.channel.id !== queue.connection.channel.id) {
+                return interaction.reply({ content: `You need to be in the same VC as me to use this command.`, ephemeral: true });
+            }
+
             const TrackNumber = interaction.options.getInteger('track_number');
             const QueueSize = queue.tracks.length;
 
@@ -85,8 +92,14 @@ module.exports = {
             interaction.reply({ content: `Removed **${success.title}** from the Queue.` })
 
         } else if (args[0] === 'clear') {
-            queue.clear();
+            if (!interaction.member.voice.channel) {
+                return interaction.reply({ content: "<:warn:986127753990529065> You must join a Voice Channel to use this command.", ephemeral: true });
+            }
+            if (interaction.member.voice.channel.id !== queue.connection.channel.id) {
+                return interaction.reply({ content: `You need to be in the same VC as me to use this command.`, ephemeral: true });
+            }
 
+            queue.clear();
             interaction.reply({ content: `Cleared the Queue.` });
         }        
     },

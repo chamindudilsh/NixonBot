@@ -1,10 +1,10 @@
-const { Client, CommandInteraction } = require("discord.js");
+const { Client, CommandInteraction, Permissions } = require("discord.js");
 
 module.exports = {
     name: "leave-vc",
     description: "Leave the Voice Channel Bot's in",
     type: 'CHAT_INPUT',
-    permissions: [],
+    permissions: [ Permissions.FLAGS.MOVE_MEMBERS ],
     /**
      *
      * @param {Client} client
