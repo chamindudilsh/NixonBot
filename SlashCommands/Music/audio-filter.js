@@ -134,7 +134,7 @@ module.exports = {
             if (!enabledFilters || enabledFilters.length == 0){
                 embed.setDescription(`There are currently no active filters. \nUse \`/audio-filter\` to turn On or Off filters.`);
             } else {
-                embed.setDescription(`${enabledFilters.join("\n")}`);
+                embed.setDescription(`${enabledFilters.map(f => formatString(f)).join("\n").replace("normalizer2", "")}`);
             }
             embed.setTitle(`Enabled Filters`);
 
@@ -306,3 +306,5 @@ module.exports = {
         }
     },
 };
+
+const formatString = (str) => `${str[0].toUpperCase()}${str.slice(1).toLowerCase()}`;
