@@ -1,7 +1,7 @@
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
-const MusicEmbed = new MessageEmbed()
-    .setColor('LUMINOUS_VIVID_PINK');
+const MusicEmbed = new EmbedBuilder()
+    .setColor('LuminousVividPink');
 
 const registerPlayerEvents = (player) => {
 

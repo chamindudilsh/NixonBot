@@ -1,5 +1,5 @@
 const client = require("../../index");
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const ms = require('ms');
 
 client.on("messageCreate", async (message) => {
@@ -22,7 +22,7 @@ client.on("messageCreate", async (message) => {
     if (!command) return;
     if (command.cooldown) {
         if (client.Cooldown.has(`${command.name}_${message.author.id}`)) {
-            const cdEmbed = new MessageEmbed()
+            const cdEmbed = new EmbedBuilder()
                 .setTitle(`Little too fast there`)
                 .setDescription(`You have to wait **${ms(client.Cooldown.get(`${command.name}_${message.author.id}`) - Date.now(), {long: true})}** before using this command again!`)
                 .setFooter({ text: client.user.username });

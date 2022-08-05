@@ -1,5 +1,5 @@
 const client = require('../../index');
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 client.giveawaysManager.on('giveawayReactionAdded', (giveaway, member, reaction) => {
     if (!giveaway.extraData || giveaway.extraData === null) return;
@@ -8,9 +8,9 @@ client.giveawaysManager.on('giveawayReactionAdded', (giveaway, member, reaction)
         reaction.users.remove(member.user);
         const role = member.guild.roles.cache.get(giveaway.extraData);
 
-        const reqEmbed = new MessageEmbed()
+        const reqEmbed = new EmbedBuilder()
             .setTitle(`Missing Giveaway Requirement!`)
-            .setColor('RED')
+            .setColor('Red')
             .setDescription(`You are missing the \`${role.name}\` role required for this giveaway.\nYour entry has been removed.`)
             .addField(`Giveaway Message`, `[${giveaway.prize}](${giveaway.messageURL})`, false)
             .setTimestamp();

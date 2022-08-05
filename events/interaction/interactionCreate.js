@@ -1,8 +1,8 @@
+const { InteractionType } = require('discord.js');
 const client = require("../../index");
 
 client.on("interactionCreate", async (interaction) => {
-    // Slash Command Handling
-    if (interaction.isCommand()) {
+    if (interaction.type === InteractionType.ApplicationCommand) {
         const cmd = client.slashCommands.get(interaction.commandName);
         if (!cmd)
             return interaction.reply({ content: "An error has occured ", ephemeral: true });
@@ -27,12 +27,11 @@ client.on("interactionCreate", async (interaction) => {
         cmd.run(client, interaction, args).catch((e) => {
             console.log(e);
         });
-    }
 
-    // Context Menu Handling
-    if (interaction.isContextMenu()) {
+    } else if (interaction.isContextMenuCommand()) {
         await interaction.deferReply({ ephemeral: false });
         const command = client.slashCommands.get(interaction.commandName);
         if (command) command.run(client, interaction);
-    }
+
+    } 
 });
