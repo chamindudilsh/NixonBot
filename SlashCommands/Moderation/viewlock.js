@@ -1,51 +1,52 @@
-const { Client, CommandInteraction, Permissions } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, PermissionsBitField } = require("discord.js");
+const { ChannelType } = require("discord-api-types/v9");
 
 module.exports = {
     name: "viewlock",
     description: "Viewlock & Unviewlock channels from members",
     options: [
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'set',
             description: 'Set Viewlock',
             options: [
                 {
                     name: 'role',
                     description: 'The specified Role to viewlock',
-                    type: 'ROLE',
+                    type: ApplicationCommandOptionType.Role,
                     required: false
                 },
                 {
                     name: 'channel',
                     description: 'The channel to viewlock',
-                    type: 'CHANNEL',
-                    channelTypes: ['GUILD_TEXT'],
+                    type: ApplicationCommandOptionType.Channel,
+                    channelTypes: ChannelType.GuildText,
                     required: false
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'remove',
             description: 'Remove Viewlock',
             options: [
                 {
                     name: 'role',
                     description: 'The specified Role to remove viewlock',
-                    type: 'ROLE',
+                    type: ApplicationCommandOptionType.Role,
                     required: false
                 },
                 {
                     name: 'channel',
                     description: 'The channel to remove viewlock',
-                    type: 'CHANNEL',
-                    channelTypes: ['GUILD_TEXT'],
+                    type: ApplicationCommandOptionType.Channel,
+                    channelTypes: ChannelType.GuildText,
                     required: false
                 }
             ]
         }        
     ],
-    permissions: [ Permissions.FLAGS.MANAGE_CHANNELS ],
+    permissions: [ PermissionsBitField.Flags.ManageChannels ],
     /**
      *
      * @param {Client} client
@@ -53,7 +54,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (!interaction.guild.me.permissions.has('MANAGE_CHANNELS')) {
+        if (!interaction.guild.members.me.permissions.has('ManageChannels')) {
             interaction.reply({ content: `I'm missing Permissions: \`MANAGE CHANNELS\``, ephemeral: true });
             return;
         }

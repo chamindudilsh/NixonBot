@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const Economy = require('../../utils/economy');
 const { randomInArray } = require('../../utils/functions');
 
@@ -25,9 +25,9 @@ module.exports = {
             return;
         });
 
-        const begEmbed = new MessageEmbed()
+        const begEmbed = new EmbedBuilder()
             .setTitle(`Beg`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .setDescription(`You begged ${randomInArray(names)} & they gave you ${rng}$`)
             .setFooter({ text: `Look at this poor beggar.` })
             .setTimestamp();

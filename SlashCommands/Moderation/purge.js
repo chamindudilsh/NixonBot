@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed, Permissions } = require("discord.js");
+const { Client, CommandInteraction, EmbedBuilder, ApplicationCommandOptionType, PermissionsBitField } = require("discord.js");
 
 module.exports = {
     name: "purge",
@@ -7,17 +7,17 @@ module.exports = {
         {
             name: 'amount',
             description: 'The amount of messages to delete',
-            type: 'NUMBER',
+            type: ApplicationCommandOptionType.Number,
             required: true
         },
         {
             name: 'target',
             description: 'Specified Target (Optional)',
-            type: 'USER',
+            type: ApplicationCommandOptionType.User,
             required: false
         }
     ],
-    permissions: [ Permissions.FLAGS.MANAGE_MESSAGES ],
+    permissions: [ PermissionsBitField.Flags.ManageMessages ],
     /**
      *
      * @param {Client} client
@@ -25,7 +25,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (!interaction.guild.me.permissions.has('MANAGE_MESSAGES')) {
+        if (!interaction.guild.members.me.permissions.has('ManageMessages')) {
             interaction.reply({ content: `I'm missing Permissions: \`MANAGE MESSAGES\``, ephemeral: true });
             return;
         }
@@ -36,8 +36,8 @@ module.exports = {
         if (amount > 99) return interaction.reply({ content: 'You Can\'t delete more than 99 messages at one time.', ephemeral: true});
         if (amount < 1) return interaction.reply({ content: 'You must delete at least 1 message.', ephemeral: true});
         
-        const Response = new MessageEmbed()
-            .setColor('LUMINOUS_VIVID_PINK');
+        const Response = new EmbedBuilder()
+            .setColor('LuminousVividPink');
 
         if (target) {
             let i = 0;

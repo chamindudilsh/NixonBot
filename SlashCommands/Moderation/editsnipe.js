@@ -1,4 +1,5 @@
-const { Client, CommandInteraction, Permissions } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, EmbedBuilder, PermissionsBitField } = require("discord.js");
+const { ChannelType } = require("discord-api-types/v9");
 
 module.exports = {
     name: "editsnipe",
@@ -7,11 +8,11 @@ module.exports = {
         {
             name: 'channel',
             description : 'channel to Editsnipe',
-            type: 'CHANNEL',
-            channelTypes: ['GUILD_TEXT']
+            type: ApplicationCommandOptionType.Channel,
+            channelTypes: ChannelType.GuildText
         }
     ],
-    permissions: [Permissions.FLAGS.MANAGE_MESSAGES],
+    permissions: [PermissionsBitField.Flags.ManageMessages],
     /**
      *
      * @param {Client} client
@@ -25,9 +26,9 @@ module.exports = {
         let n_snipe = client.neditsnipes.get(channelToSnipe.id);
         if(!o_snipe || !n_snipe) return interaction.reply({ content: "There's nothing edited.", ephemeral: true });
 
-        const snipeEmbed = new MessageEmbed()
+        const snipeEmbed = new EmbedBuilder()
             .setAuthor({ name: `Message By ${o_snipe.author.tag}`, iconURL: o_snipe.author.displayAvatarURL({ dynamic: true }) })
-            .setColor('RANDOM')
+            .setColor('Random')
             .addField(`Old Message`, `${o_snipe.content}`, false)
             .addField(`New Message`, `${n_snipe.content}`, false)
             .setFooter({ text: `Sniped By ${interaction.user.username}` })

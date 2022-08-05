@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
+const { Message, Client, EmbedBuilder, ButtonBuilder, ActionRowBuilder } = require("discord.js");
 
 module.exports = {
     name: "invite",
@@ -10,21 +10,21 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, message, args) => {
-        const inviteEmbed = new MessageEmbed()
+        const inviteEmbed = new EmbedBuilder()
             .setTitle('Invite')
             .setThumbnail(`${client.user.displayAvatarURL()}`)
-            .setColor('LUMINOUS_VIVID_PINK')
+            .setColor('LuminousVividPink')
             .setDescription(`**Hi** ${message.author.username}, Thanks for choosing me & thinking of inviting me to your server.\nUse the following buttons or the links to Add me to your server. \n\n[Invite](https://discord.com/api/oauth2/authorize?client_id=920318627754938418&permissions=8&scope=bot%20applications.commands)\n[Support](https://discord.gg/vfexaskEBA)`)
             .setFooter('You can also invite the bot right from the profile, if you\'re using a PC.');
 
-        const row = new MessageActionRow()
+        const row = new ActionRowBuilder()
             .addComponents(
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel('Invite')
                     .setStyle('LINK')
                     .setURL('https://discord.com/api/oauth2/authorize?client_id=920318627754938418&permissions=8&scope=bot%20applications.commands'),
 
-                new MessageButton()
+                new ButtonBuilder()
                     .setLabel('Support')
                     .setStyle('LINK')
                     .setURL('https://discord.gg/K5qA3xV53w')

@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed, Permissions } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, EmbedBuilder, PermissionsBitField } = require("discord.js");
 
 module.exports = {
     name: "nick",
@@ -7,23 +7,23 @@ module.exports = {
         {
             name: 'user',
             description: 'The User you want to perform the timeout on',
-            type: 'USER',
+            type: ApplicationCommandOptionType.User,
             required: true
         },
         {
             name: 'nick',
             description: 'New Nickname to set',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: true
         },
         {
             name : 'reason',
             description: 'Reason for changing Nickname',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: false
         }
     ],
-    permissions: [ Permissions.FLAGS.MANAGE_NICKNAMES ],
+    permissions: [ PermissionsBitField.Flags.ManageNicknames ],
     /**
      *
      * @param {Client} client
@@ -31,7 +31,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (!interaction.guild.me.permissions.has('MANAGE_NICKNAMES')) {
+        if (!interaction.guild.members.me.permissions.has('ManageNicknames')) {
             interaction.reply({ content: `I'm missing Permissions: \`MANAGE NICKNAMES\``, ephemeral: true });
             return;
         }
@@ -50,7 +50,7 @@ module.exports = {
 
         let old_nick = await member.displayName;
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setAuthor({ name: member.user.tag, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
             .setTitle(`Nickname Changed`)
             .setDescription(`Before: ${old_nick} \n After: ${nick}`)

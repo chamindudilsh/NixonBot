@@ -40,7 +40,9 @@ module.exports = async (client) => {
     });
     
     client.on("ready", async () => {
-        await client.application.commands.set(arrayOfSlashCommands);
+        await client.guilds.cache
+            .get("920666511578923058")
+            .commands.set(arrayOfSlashCommands);
     });
 
     const { mongooseConnectionString } = require('../config.json')

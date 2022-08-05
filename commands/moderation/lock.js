@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "lock",
@@ -13,9 +13,9 @@ module.exports = {
     run: async (client, message, args) => {
         if (!message.member.permissions.has('MANAGE_CHANNELS')) return;
 
-        const Response = new MessageEmbed()
+        const Response = new EmbedBuilder()
             .setTitle('Lockdown :lock:')
-            .setColor('RED')
+            .setColor('Red')
             .setFooter({ text: `${message.guild.name}`, iconURL: message.guild.iconURL({ dynamic: true }) })
             .setTimestamp()
 

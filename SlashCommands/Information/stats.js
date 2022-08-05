@@ -1,9 +1,9 @@
-const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandType, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "stats",
     description: "Provides some information about the bot.",
-    type: 'CHAT_INPUT',
+    type: ApplicationCommandType.ChatInput,
     permissions: [],
     /**
      *
@@ -23,7 +23,7 @@ module.exports = {
         
         let uptime = `${days}d ,${hours}h, ${minutes}m & ${seconds}s`;
         
-        const statsEmbed = new MessageEmbed()
+        const statsEmbed = new EmbedBuilder()
             .setTitle('Bot Stats')
             .setColor('#008080')
             .setDescription('This provides some basic information of the bot.')

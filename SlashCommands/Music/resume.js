@@ -1,9 +1,9 @@
-const { Client, CommandInteraction } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandType } = require("discord.js");
 
 module.exports = {
     name: "resume",
     description: "Resume the paused track",
-    type: 'CHAT_INPUT',
+    type: ApplicationCommandType.ChatInput,
     permissions: [],
     /**
      *

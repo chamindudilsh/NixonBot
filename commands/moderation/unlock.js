@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "unlock",
@@ -13,9 +13,9 @@ module.exports = {
     run: async (client, message, args) => {
         if (!message.member.permissions.has('MANAGE_CHANNELS')) return;
 
-        const Response = new MessageEmbed()
+        const Response = new EmbedBuilder()
             .setTitle('Lockdown Ended :unlock:')
-            .setColor('WHITE')
+            .setColor('White')
             .setFooter({ text: `${message.guild.name}`, iconURL: message.guild.iconURL({ dynamic: true }) })
             .setTimestamp()
 

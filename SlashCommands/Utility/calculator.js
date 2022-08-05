@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
 const math = require('mathjs');
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
         {
             name: 'args',
             description: 'Arguments to calculate',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: true
         }
     ],
@@ -22,9 +22,9 @@ module.exports = {
     run: async (client, interaction, args) => {
         const query = interaction.options.getString('args');
 
-        const mathEmbed = new MessageEmbed()
+        const mathEmbed = new EmbedBuilder()
                 .setAuthor({ name: `Calculation for ${query}` })
-                .setColor('RANDOM');
+                .setColor('Random');
 
         try {
             const results = math.evaluate(query);

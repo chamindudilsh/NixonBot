@@ -1,8 +1,9 @@
 const { Client, CommandInteraction, ApplicationCommandType } = require("discord.js");
-
+const akinator = require('discord.js-akinator');
+ 
 module.exports = {
-    name: "ping",
-    description: "PONG",
+    name: "akinator",
+    description: "Play Akinator",
     type: ApplicationCommandType.ChatInput,
     permissions: [],
     /**
@@ -12,6 +13,11 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        interaction.reply({ content: `**Pong!**\n\`${client.ws.ping}ms\`` });
+        akinator(interaction, {
+            childMode: false,
+            gameType: "character",
+            useButtons: true,
+            embedColor: "#ebfffe"
+        });
     },
 };

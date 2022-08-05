@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "decode",
@@ -23,9 +23,9 @@ module.exports = {
         let buff = Buffer.from(query, format);
         let output = buff.toString();
 
-        const baseEmbed = new MessageEmbed()
+        const baseEmbed = new EmbedBuilder()
             .setTitle(`Decoder`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .addField(`${formatString(format)}`, `\`\`\`${query}\`\`\``, false)
             .addField(`Text`, `\`\`\`${output}\`\`\``, false)
             .setFooter({ text: message.author.username, iconURL: message.author.displayAvatarURL({ dynamic: true }) })

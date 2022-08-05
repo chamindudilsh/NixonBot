@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "purge",
@@ -26,8 +26,8 @@ module.exports = {
         if (amount < 1) return message.reply('You must delete at least 1 message.');
         const del_amount = (amount + 1);
         
-        const Response = new MessageEmbed()
-            .setColor('LUMINOUS_VIVID_PINK');
+        const Response = new EmbedBuilder()
+            .setColor('LuminousVividPink');
 
         if (target) {
             let i = 0;

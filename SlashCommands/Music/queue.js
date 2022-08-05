@@ -1,37 +1,37 @@
-const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "queue",
     description: "Manage the Queue",
     options: [
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'list',
             description: 'List the Queue',
             options: [
                 {
                     name: 'page',
-                    type: 'INTEGER',
+                    type: ApplicationCommandOptionType.Integer,
                     description: 'Specific page number in queue',
                     required: false
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'remove',
             description: 'Remove a specified Track from the Queue',
             options: [
                 {
                     name: 'track_number',
-                    type: 'INTEGER',
+                    type: ApplicationCommandOptionType.Integer,
                     description: 'Track number in the Queue',
                     required: true
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'clear',
             description: 'Clear the Queue',
         }        
@@ -58,9 +58,9 @@ module.exports = {
                 return `${i + pageStart + 1}. **${m.title}** ([Link](${m.url}))`;
             });
 
-            const Embed = new MessageEmbed()
+            const Embed = new EmbedBuilder()
                 .setTitle('Server Queue')
-                .setColor('LUMINOUS_VIVID_PINK')
+                .setColor('LuminousVividPink')
                 .setDescription(`${tracks.join('\n')}${
                     queue.tracks.length > pageEnd
                         ? `\n...${queue.tracks.length - pageEnd} more track(s)`

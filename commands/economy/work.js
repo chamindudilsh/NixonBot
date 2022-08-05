@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const Economy = require('../../utils/economy');
 const { randomInArray } = require('../../utils/functions');
 
@@ -22,9 +22,9 @@ module.exports = {
             return;
         });
 
-        const workEmbed = new MessageEmbed()
+        const workEmbed = new EmbedBuilder()
             .setTitle(`Work`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .setDescription(`You worked as a ${randomInArray(jobs)} & earned ${rng.toLocaleString('en-US', {maximumFractionDigits:2})}$`)
             .setFooter({ text: `Work hourly for Stonks` })
             .setTimestamp();

@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed, Permissions } = require("discord.js");
+const { Client, CommandInteraction, EmbedBuilder, ApplicationCommandOptionType, PermissionsBitField } = require("discord.js");
 
 module.exports = {
     name: "ban",
@@ -7,17 +7,17 @@ module.exports = {
         {
             name: 'user',
             description: 'The Member to ban',
-            type: 'USER',
+            type: ApplicationCommandOptionType.User,
             required: true
         },
         {
             name: 'reason',
             description: 'The reason for the ban',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: false
         }
     ],
-    permissions: [ Permissions.FLAGS.BAN_MEMBERS ],
+    permissions: [ PermissionsBitField.Flags.BanMembers ],
     /**
      *
      * @param {Client} client
@@ -25,7 +25,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (!interaction.guild.me.permissions.has('BAN_MEMBERS')) {
+        if (!interaction.guild.members.me.permissions.has('BanMembers')) {
             interaction.reply({ content: `I'm missing Permissions: \`BAN MEMBERS\``, ephemeral: true });
             return;
         }
@@ -33,7 +33,7 @@ module.exports = {
         const baseReason = interaction.options.getString('reason') || `No Reason Provided.`;
         let reason = `${baseReason} - ${interaction.user.tag}(${interaction.user.id})`;
 
-        if (interaction.guild.me.roles.highest.position <= member.roles.highest.position) {
+        if (interaction.guild.members.me.roles.highest.position <= member.roles.highest.position) {
             interaction.reply({ content:`I'm not high enough in the role hierarchy to do it.`, ephemeral: true });
             return;
         }
@@ -42,9 +42,9 @@ module.exports = {
             return;
         }
 
-        const banEmbed = new MessageEmbed()
+        const banEmbed = new EmbedBuilder()
             .setTitle('Ban')
-            .setColor('RED')
+            .setColor('Red')
             .setDescription(`**Offender :** ${member.user.tag} ${member.toString()} \n**Reason :** ${reason} \n**Responsible Moderator :** ${interaction.user.tag}`)
             .setFooter({text: `ID: ${member.user.id}`})
             .setTimestamp();

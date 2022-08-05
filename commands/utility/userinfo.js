@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const moment = require('moment');
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
         const dc_roles = Member.roles.cache.sort((a, b) => b.position - a.position).map(r => r).join(' ').replace("@everyone", " ");
 
         if (dc_roles.length >= 1024) {
-            const uiEmbed2 = new MessageEmbed()
+            const uiEmbed2 = new EmbedBuilder()
                 .setAuthor({ name: `${Target.username}`, iconURL: Target.displayAvatarURL({ dynamic: true }) })
                 .setThumbnail(Target.displayAvatarURL({ format: 'jpg', size: 1024, dynamic: true }))
                 .setDescription(`[Avatar](${Target.displayAvatarURL({ format: 'jpg', size: 1024, dynamic: true })})`)
@@ -36,7 +36,7 @@ module.exports = {
             return;
         }
 
-        const uiEmbed = new MessageEmbed()
+        const uiEmbed = new EmbedBuilder()
             .setAuthor({ name: `${Target.username}`, iconURL: Target.displayAvatarURL({ dynamic: true }) })
             .setThumbnail(Target.displayAvatarURL({ format: 'jpg', size: 1024, dynamic: true }))
             .setDescription(`[Avatar](${Target.displayAvatarURL({ format: 'jpg', size: 1024, dynamic: true })})`)

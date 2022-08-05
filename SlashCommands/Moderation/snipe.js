@@ -1,4 +1,5 @@
-const { Client, CommandInteraction, Permissions } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, PermissionsBitField, EmbedBuilder } = require("discord.js");
+const { ChannelType } = require("discord-api-types/v9");
 const moment = require('moment');
 
 module.exports = {
@@ -8,18 +9,18 @@ module.exports = {
         {
             name: 'channel',
             description: 'Channel to Snipe',
-            type: 'CHANNEL',
-            channelTypes: ['GUILD_TEXT'],
+            type: ApplicationCommandOptionType.Channel,
+            channelTypes: ChannelType.GuildText,
             required: false
         },
         {
             name: 'number',
             description: 'Snipe up to',
-            type: 'NUMBER',
+            type: ApplicationCommandOptionType.Number,
             required: false
         }
     ],
-    permissions: [Permissions.FLAGS.MANAGE_MESSAGES],
+    permissions: [PermissionsBitField.Flags.ManageMessages],
     /**
      *
      * @param {Client} client
@@ -45,9 +46,9 @@ module.exports = {
 
         const { msg, time, image } = target;
 
-        const snipeEmbed = new MessageEmbed()
+        const snipeEmbed = new EmbedBuilder()
             .setAuthor({ name: `${msg.author.tag}`, iconURL: `${msg.author.displayAvatarURL({ dynamic: true })}` })
-            .setColor('RANDOM')
+            .setColor('Random')
             .setDescription(`${msg.content}`)
             .setImage(image)
             .setFooter({ text: `${moment(time).fromNow()} | ${snipe + 1} / ${snipes.length}` });

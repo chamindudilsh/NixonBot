@@ -1,4 +1,4 @@
-const { Message, Client, EmbedBuilder } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
 const { codeBlock } = require("@discordjs/builders");
 const { inspect } = require('util');
 const functions = require('../../utils/functions');
@@ -6,23 +6,29 @@ const ms = require('ms');
 
 module.exports = {
     name: "eval",
-    aliases: [''],
     description: "Evaluate JS Code",
+    options: [
+        {
+            name: 'code',
+            description: 'Code to Evaluate',
+            type: ApplicationCommandOptionType.String,
+            required: true
+        }
+    ],
+    permissions: [],
     /**
      *
      * @param {Client} client
-     * @param {Message} message
+     * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (client, message, args) => {
-        if (message.author.id !== client.config.owner) return;
-
-        const code = args.join(" ");
-        if (!code) {
-            message.reply({ content: "Please provide some code to evaluate." });
+    run: async (client, interaction, args) => {
+        if (interaction.user.id !== client.config.owner) {
+            interaction.reply({ content: 'This spell is too powerful for you.', ephemeral: true });
             return;
         }
 
+        const code = interaction.options.getString('code');
         const EvalEmbed = new EmbedBuilder()
             .addField(`Input`, `\`\`\`js\n${code}\`\`\``, false)
             
@@ -38,14 +44,14 @@ module.exports = {
 
             if (output.length >= 1024) {
                 EvalEmbed.addField(`Output`, `\`\`\`Output is too long to send in a embed. Sending as Raw messages...\`\`\``, false);
-                await message.channel.send({ embeds: [EvalEmbed] });
-                message.channel.send(codeBlock(output.slice(0, 2000)));
+                await interaction.reply({ embeds: [EvalEmbed] });
+                interaction.channel.send(codeBlock(output.slice(0, 2000)));
                 return;
             }
 
             EvalEmbed.addField(`Output`, `\`\`\`js\n${output}\`\`\``, false);
 
-            message.channel.send({ embeds: [EvalEmbed] });
+            interaction.reply({ embeds: [EvalEmbed] });
         } catch (err) {
             err = err.toString();
             if (err.includes(client.config.token)) {
@@ -53,8 +59,8 @@ module.exports = {
             }
             EvalEmbed.addField(`Error`, `\`\`\`js\n${err}\`\`\``, false);
 
-            message.channel.send({ embeds: [EvalEmbed] });
+            interaction.reply({ embeds: [EvalEmbed] });
             return;
-        }
+        }      
     },
 };

@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "ban",
@@ -33,9 +33,9 @@ module.exports = {
         const baseReason = args.slice(1).join(" ") || `No Reason Provided.`;
         let reason = `${baseReason} - ${message.author.tag}(${message.author.id})`;
         
-        const banEmbed = new MessageEmbed()
+        const banEmbed = new EmbedBuilder()
             .setTitle('Ban')
-            .setColor('RED')
+            .setColor('Red')
             .setDescription(`**Offender :** ${member.user.tag} ${member.toString()} \n**Reason :** ${reason} \n**Responsible Moderator :** ${message.author.tag}`)
             .setFooter({text: `ID: ${member.user.id}`})
             .setTimestamp();

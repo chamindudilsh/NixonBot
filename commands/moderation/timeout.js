@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const ms = require('ms');
 
 module.exports = {
@@ -25,8 +25,8 @@ module.exports = {
 
         await member.timeout(timeInMs, reason);
 
-        const timeoutEmbed = new MessageEmbed()
-            .setColor('YELLOW')
+        const timeoutEmbed = new EmbedBuilder()
+            .setColor('Yellow')
             .setTitle('Timeout')
             .setDescription(`${member} has been timed out for ${ms(args[1],{ long:true })}\n**Reason:** ${reason}\n**Responsible Moderator:** ${interaction.user.tag}`)
             .setTimestamp();

@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "stats",
@@ -22,7 +22,7 @@ module.exports = {
 
         let uptime = `${days}d ,${hours}h, ${minutes}m & ${seconds}s`;
 
-        const statsEmbed = new MessageEmbed()
+        const statsEmbed = new EmbedBuilder()
             .setTitle('Bot Stats')
             .setColor('#008080')
             .setDescription('This provides some basic information of the bot.')

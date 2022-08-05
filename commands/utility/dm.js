@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "dm",
@@ -15,7 +15,7 @@ module.exports = {
         if (!message.member.permissions.has('ADMINISTRATOR')) return;
         const user = message.mentions.users.first() || message.guild.members.cache.get(args[0])?.user;
 
-        const dmEmbed = new MessageEmbed()
+        const dmEmbed = new EmbedBuilder()
             .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
             .setTitle(`Message Sent`)
             .addField(`From`,`<@${message.author.id}>`, true)

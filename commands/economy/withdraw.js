@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const Balance = require('../../models/schemas/balance');
 const Economy = require('../../utils/economy');
 
@@ -23,9 +23,9 @@ module.exports = {
             amount = Economy.formatNumber(args[0]);
         }
         if (isNaN(amount)) return message.reply({ content:`Give me a valid amount to withdraw.` });
-        const withEmbed = new MessageEmbed()
+        const withEmbed = new EmbedBuilder()
             .setTitle(`Withdraw`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .setFooter({ text: `Withdraw for ez use.` })
             .setTimestamp();
 

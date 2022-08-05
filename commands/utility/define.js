@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const axios = require('axios');
 
 module.exports = {
@@ -29,11 +29,11 @@ module.exports = {
             return;
         }
 
-        const udEmbed = new MessageEmbed()
+        const udEmbed = new EmbedBuilder()
             .setAuthor({ name: `Requested By ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
             .setTitle(answer.word)
             .setURL(answer.permalink)
-            .setColor('RANDOM')
+            .setColor('Random')
             .addField("DEFINITION", trim(answer.definition), false)
             .addField("EXAMPLE", trim(answer.example) + '.', false)
             .addField("RATINGS", `${answer.thumbs_up} :thumbsup: || ${answer.thumbs_down} :thumbsdown:`)
@@ -45,4 +45,4 @@ module.exports = {
 
 function trim(input) {
     return input.length > 1024 ? `${input.slice(0, 1020)} ... ` : input;
-  }
+}

@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const math = require('mathjs');
 
 module.exports = {
@@ -22,11 +22,11 @@ module.exports = {
         //if(isNaN(results)) return message.reply({ content: `Please provid valid arguments.` });
 
         try {
-            const mathEmbed = new MessageEmbed()
+            const mathEmbed = new EmbedBuilder()
                 .setAuthor({ name: `Calculation for ${query}` })
                 .setTitle(`= ${results.toLocaleString('en-US', {maximumFractionDigits:2})}`)
                 .setFooter({ text: `Raw: ${results}` })
-                .setColor('RANDOM');
+                .setColor('Random');
 
             message.channel.send({ content:`${results}`, embeds:[mathEmbed] })
         } catch (err) {

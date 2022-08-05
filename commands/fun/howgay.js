@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "howgay",
@@ -14,10 +14,10 @@ module.exports = {
         const member = message.mentions.users.first() || message.author;
         let rng = Math.floor(Math.random() * 101);
 
-        const howgayEmbed = new MessageEmbed()
+        const howgayEmbed = new EmbedBuilder()
             .setTitle(`Gay Machine Calculator`)
             .setDescription(`${member.username} is ${rng}% Gay 🌈`)
-            .setColor('GREEN')
+            .setColor('Green')
             .setFooter({ text: `${member.username}`, iconURL: `${member.displayAvatarURL({ dynamic: true })}` });
 
         message.channel.send({ embeds: [howgayEmbed] });

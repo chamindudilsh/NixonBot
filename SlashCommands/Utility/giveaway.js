@@ -1,4 +1,5 @@
-const { Client, CommandInteraction } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType } = require("discord.js");
+const { ChannelType } = require("discord-api-types/v9");
 const ms = require('ms');
 
 module.exports = {
@@ -6,65 +7,65 @@ module.exports = {
     description: "Create & Manage Giveaways",
     options: [
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'start',
             description: 'Start a giveaway',
             options: [
                 {
                     name: 'time',
                     description: 'The duration of slowmode',
-                    type: 'STRING',
+                    type: ApplicationCommandOptionType.String,
                     required: true
                 },
                 {
                     name: 'winners',
                     description: 'The amount of winners',
-                    type: 'INTEGER',
+                    type: ApplicationCommandOptionType.Integer,
                     required: true
                 },
                 {
                     name: 'prize',
                     description: 'The giveaway prize',
-                    type: 'STRING',
+                    type: ApplicationCommandOptionType.String,
                     required: true
                 },
                 {
                     name: 'requirement',
                     description: 'Required role to win the prize. (Optional)',
-                    type: 'ROLE',
+                    type: ApplicationCommandOptionType.Role,
                     required: false
                 },
                 {
                     name: 'channel',
                     description: 'The channel to create giveaway, leave out to use the current channel.',
-                    type: 'CHANNEL',
-                    channelTypes: ['GUILD_TEXT'],
+                    type: ApplicationCommandOptionType.Channel,
+                    channelTypes: ChannelType.GuildText,
                     required: false
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'reroll',
             description: 'Reroll a giveaway',
             options: [
                 {
                     name: 'giveaway',
                     description: 'Giveaway ID or Giveaway URL',
-                    type: 'STRING',
+                    type: ApplicationCommandOptionType.String,
                     required: true
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'end',
             description: 'End a ongoing giveaway',
             options: [
                 {
                     name: 'giveaway',
                     description: 'Giveaway ID or Giveaway URL',
-                    type: 'STRING',
+                    type: ApplicationCommandOptionType.String,
                     required: true
                 }
             ]

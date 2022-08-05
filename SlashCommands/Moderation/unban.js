@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, Permissions } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, PermissionsBitField } = require("discord.js");
 
 module.exports = {
     name: "unban",
@@ -7,17 +7,17 @@ module.exports = {
         {
             name: 'user',
             description: 'The User ID to unban',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: true
         },
         {
             name: 'reason',
             description: 'The reason for the unban',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: false
         }
     ],
-    permissions: [ Permissions.FLAGS.BAN_MEMBERS ],
+    permissions: [ PermissionsBitField.Flags.BanMembers ],
     /**
      *
      * @param {Client} client
@@ -25,7 +25,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (!interaction.guild.me.permissions.has('BAN_MEMBERS')) {
+        if (!interaction.guild.members.me.permissions.has('BanMembers')) {
             interaction.reply({ content: `I'm missing Permissions: \`BAN MEMBERS\``, ephemeral: true });
             return;
         }

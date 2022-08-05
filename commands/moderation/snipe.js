@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const moment = require('moment');
 
 module.exports = {
@@ -28,9 +28,9 @@ module.exports = {
 
             const { msg, time, image } = target;
 
-            const snipeEmbed = new MessageEmbed()
+            const snipeEmbed = new EmbedBuilder()
                 .setAuthor({ name: `${msg.author.tag}`, iconURL: `${msg.author.displayAvatarURL({ dynamic: true })}` })
-                .setColor('RANDOM')
+                .setColor('Random')
                 .setDescription(`${msg.content}`)
                 .setImage(image)
                 .setFooter({ text: `${moment(time).fromNow()} | ${snipe + 1} / ${snipes.length}` });

@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const Economy = require('../../utils/economy');
 
 module.exports = {
@@ -41,9 +41,9 @@ module.exports = {
         const newBal = await Economy.checkWallet(message.author.id);
         const sharedBal = await Economy.checkWallet(member.user.id);
 
-        const shareEmbed = new MessageEmbed()
+        const shareEmbed = new EmbedBuilder()
             .setTitle(`Share`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .addField(`Your Balance`, `\`${newBal.toLocaleString('en-US', {maximumFractionDigits:2})}$\``, true)
             .addField(`${member.user.username}'s Balance`, `\`${sharedBal.toLocaleString('en-US', {maximumFractionDigits:2})}$\``, true)
             .setFooter({ text: `Sharing is caring.` })

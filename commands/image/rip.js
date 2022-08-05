@@ -1,4 +1,4 @@
-const { Message, Client, MessageAttachment } = require("discord.js");
+const { Message, Client, AttachmentBuilder } = require("discord.js");
 const DIG = require("discord-image-generation");
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
             let avatar = message.author.displayAvatarURL({ dynamic: false, format: 'png' });
 
             let img = await new DIG.Rip().getImage(avatar);
-            let attach = new MessageAttachment(img, "rip.png");
+            let attach = new AttachmentBuilder(img, { name: "rip.png" });
 
             message.channel.send({ files: [attach], content: `*Press **F** to pay respect.*` });
             return;
@@ -28,7 +28,7 @@ module.exports = {
         let avatar = mentionedUser.displayAvatarURL({ dynamic: false, format: 'png' });
 
         let img = await new DIG.Rip().getImage(avatar);
-        let attach = new MessageAttachment(img, "rip.png");
+        let attach = new AttachmentBuilder(img, { name: "rip.png" });
 
         message.channel.send({ files: [attach], content: `*Press **F** to pay respect.*` });            
     },

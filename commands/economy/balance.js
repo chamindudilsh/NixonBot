@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const Economy = require('../../utils/economy');
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
         let member = message.mentions.members.first() || message.member;
         const balanceProfile = await Economy.createBalance(member.user);
 
-        const balEmbed = new MessageEmbed()
+        const balEmbed = new EmbedBuilder()
             .setTitle(`${member.user.username}'s Balance`)
             .setColor(member.displayHexColor)
             .setDescription(`Wallet: ${balanceProfile.wallet.toLocaleString('en-US', {maximumFractionDigits:2})}$\nBank: ${balanceProfile.bank.toLocaleString('en-US', {maximumFractionDigits:2})}$`)

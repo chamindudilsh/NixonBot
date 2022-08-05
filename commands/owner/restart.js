@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const child = require('child_process');
 
 module.exports = {
@@ -14,9 +14,9 @@ module.exports = {
     run: async (client, message, args) => {
         if (message.author.id !== client.config.owner) return;
 
-        const confirmEmbed = new MessageEmbed()
+        const confirmEmbed = new EmbedBuilder()
             .setTitle('Are you sure about Restarting?')
-            .setColor('ORANGE')
+            .setColor('Orange')
             .setDescription(`If yes, send **CONFIRM**\nIf no, send **Cancel**\n\nYou have 20 seconds to decide.`)
             .setFooter({ text: 'Caps Counts' })
 
@@ -33,9 +33,9 @@ module.exports = {
 
         if (confirmation.size) {
             if (confirmation.first().content === 'CONFIRM') {
-                const restartEmbed = new MessageEmbed()
+                const restartEmbed = new EmbedBuilder()
                     .setTitle('Action Confirmed')
-                    .setColor('GREEN')
+                    .setColor('Green')
                     .setDescription(`${client.user.username} is Restarting within few seconds.`)
                     .setFooter({ text: 'See ya in few secs'})
 
@@ -47,9 +47,9 @@ module.exports = {
                     if(err) return message.reply({ content: `Couldn't Terminate the bot.` })
                 })
             } else if (confirmation.first().content.toLowerCase() === 'cancel') {
-                const aliveEmbed = new MessageEmbed()
+                const aliveEmbed = new EmbedBuilder()
                     .setTitle('Action Cancelled')
-                    .setColor('RED')
+                    .setColor('Red')
                     .setDescription(`OK i guess, Nothing bad would happen tho.`)
                     .setFooter({ text: 'guess I\'ll be around' })
 
@@ -58,7 +58,7 @@ module.exports = {
             }
         }
 
-        const timeoutEmbed = new MessageEmbed()
+        const timeoutEmbed = new EmbedBuilder()
             .setTitle('Operation Timed out.')
             .setColor('DARK_AQUA')
             .setDescription(`If yes, send **CONFIRM**\nIf no, send **Cancel**\n\nYou have 20 seconds to decide.`)

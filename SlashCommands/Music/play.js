@@ -1,4 +1,4 @@
-const { Client, CommandInteraction } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
     name: "play",
@@ -7,7 +7,7 @@ module.exports = {
         {
             name: 'song',
             description: 'Song Name to play',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: true
         }
     ],

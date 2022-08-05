@@ -1,9 +1,9 @@
-const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandType, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "now-playing",
     description: "Now Playing Track",
-    type: 'CHAT_INPUT',
+    type: ApplicationCommandType.ChatInput,
     permissions: [],
     /**
      *
@@ -22,9 +22,9 @@ module.exports = {
         const progress = queue.createProgressBar();
         const perc = queue.getPlayerTimestamp();
 
-        const Embed = new MessageEmbed()
+        const Embed = new EmbedBuilder()
             .setTitle(`<a:playing:986126798343532594> Now Playing`)
-            .setColor('LUMINOUS_VIVID_PINK')
+            .setColor('LuminousVividPink')
             .setDescription(`**${queue.current.title}** (${queue.current.duration})\n(\`${perc.progress == 'Infinity' ? 'Live' : perc.progress + '%'}\`)`)
             .addField(`\u200b`, `${progress.replace(/ 0:00/g, ' ◉ LIVE')}`, false)
             .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })

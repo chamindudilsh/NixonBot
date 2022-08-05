@@ -1,5 +1,6 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const translate = require('@iamtraction/google-translate');
+const ISO6391 = require('iso-639-1');
 const languageNames = new Intl.DisplayNames(['en'], {type: 'language'});
 
 module.exports = {
@@ -17,10 +18,10 @@ module.exports = {
         if (!query) return message.reply('Please provide some text to Translate.');
 
         const translated = await translate(query, { to: 'en' }).catch(console.error);
-        const tr_embed = new MessageEmbed()
+        const tr_embed = new EmbedBuilder()
             .setAuthor({ name :`Requested By ${message.author.username}`, iconURL: message.author.displayAvatarURL({ dynamic: true })})
             .setTitle('Translate')
-            .setColor('RANDOM')
+            .setColor('Random')
             .addField(`Translation`, `${translated.text}`, false)
             .addField(`Original Text`, `${query}`, false)
             .addField(`Detected Language`, `${languageNames.of(translated.from.language.iso)}`, false)

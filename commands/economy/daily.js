@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const Economy = require('../../utils/economy');
 
 module.exports = {
@@ -19,9 +19,9 @@ module.exports = {
             return;
         });
 
-        const dailyEmbed = new MessageEmbed()
+        const dailyEmbed = new EmbedBuilder()
             .setTitle(`Daily`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .setDescription(`You Claimed your 10,000$ Daily.`)
             .setFooter({ text: `Come again tommorow.` })
             .setTimestamp();

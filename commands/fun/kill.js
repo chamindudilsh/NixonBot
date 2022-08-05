@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "kill",
@@ -31,10 +31,10 @@ module.exports = {
         const footer_texts = ["SUS, very very very SUS", "Amogus", "That was a setup", "LEGIT", "LMFAO NAB", "Get rekt", "Very sad, very", "Who is dat idiot", "Where did they come from", "That case is sus", "nab", "U just killed an innocent human", "Did it hurt", "Ayo wtf", "R.I.P"];
         let footer_rng = footer_texts[Math.floor((Math.random() * footer_texts.length))];
 
-        const killEmbed = new MessageEmbed()
+        const killEmbed = new EmbedBuilder()
             .setTitle(`Murder`)
             .setDescription(`${member.username} ${result}`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .setFooter({ text: `${footer_rng}` });
        
         message.channel.send({ embeds: [killEmbed] });

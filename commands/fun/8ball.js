@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "8ball",
@@ -20,9 +20,9 @@ module.exports = {
 
         let result = Math.floor((Math.random() * replies.length));
 
-        const ballEmbed = new MessageEmbed()
+        const ballEmbed = new EmbedBuilder()
             .setTitle(`🎱8 Ball`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .addField(`Asked`, `\`\`\`${question}\`\`\``, false)
             .addField(`Answer`, `\`\`\`${replies[result]}\`\`\``, false)
             .setFooter({ text: `${message.author.username}`, iconURL: `${message.author.displayAvatarURL({ dynamic: true })}` });

@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const got = require('got');
 
 module.exports = {
@@ -18,11 +18,11 @@ module.exports = {
         got(`https://www.reddit.com/r/${random}/random/.json`).then(res => {
             let content = JSON.parse(res.body);
 
-            const memeEmbed = new MessageEmbed()
+            const memeEmbed = new EmbedBuilder()
                 .setTitle(`${content[0].data.children[0].data.title}`)
                 .setURL(`https://reddit.com${content[0].data.children[0].data.permalink}`)
                 .setImage(`${content[0].data.children[0].data.url}`)
-                .setColor('RANDOM')
+                .setColor('Random')
                 .setFooter({ text: `👍 ${content[0].data.children[0].data.ups} | 💬 ${content[0].data.children[0].data.num_comments}` });
 
             message.channel.send({ embeds: [memeEmbed] });

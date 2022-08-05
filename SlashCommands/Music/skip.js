@@ -1,9 +1,9 @@
-const { Client, CommandInteraction } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandType } = require("discord.js");
 
 module.exports = {
     name: "skip",
     description: "Skip current playing song.",
-    type: 'CHAT_INPUT',
+    type: ApplicationCommandType.ChatInput,
     permissions: [],
     /**
      *

@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed, Collection } = require("discord.js");
+const { Message, Client, EmbedBuilder, Collection } = require("discord.js");
 const Economy = require('../../utils/economy');
 
 module.exports = {
@@ -34,9 +34,9 @@ module.exports = {
             return `${i+1}) ${v.bal.toLocaleString('en-US', {maximumFractionDigits:2})}$ **-** ${client.users.cache.get(v.id).tag}`
         });
 
-        const lbEmbed = new MessageEmbed()
+        const lbEmbed = new EmbedBuilder()
             .setTitle(`Server Leaderboard`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .setDescription(`${lb.join('\n')}`)
             .setFooter({ text: `Check if u're here` })
             .setTimestamp();

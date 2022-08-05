@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "avatar",
@@ -13,7 +13,7 @@ module.exports = {
     run: async (client, message, args) => {
         const Target = message.mentions.users.first() || message.author;
 
-        const AvatarEmbed = new MessageEmbed()
+        const AvatarEmbed = new EmbedBuilder()
             .setTitle('Avatar')
             .setDescription(`[Avatar URL](${Target.displayAvatarURL({ format: 'png', size: 1024, dynamic: true })})`)
             .setImage(Target.displayAvatarURL({ format: 'png', size: 1024, dynamic: true }))

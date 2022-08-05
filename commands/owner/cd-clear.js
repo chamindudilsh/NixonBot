@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "cd-clear",
@@ -12,7 +12,7 @@ module.exports = {
      */
     run: async (client, message, args) => {
         if (message.author.id !== client.config.owner) return;
-        const cdEmbed = new MessageEmbed()
+        const cdEmbed = new EmbedBuilder()
             .setTitle(`Cooldowns Cleared`)
             .setFooter({ text: `Operation Successfull!` })
             .setTimestamp();

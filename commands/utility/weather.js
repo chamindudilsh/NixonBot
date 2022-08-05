@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const weather = require('weather-js');
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
             let location = result[0].location;
             let forecast = result[0].forecast;
 
-            const weatherEmbed = new MessageEmbed()
+            const weatherEmbed = new EmbedBuilder()
                 .setTitle(`Weather info for ${current.observationpoint}`)
                 .setDescription(current.skytext)
                 .setThumbnail(current.imageUrl)

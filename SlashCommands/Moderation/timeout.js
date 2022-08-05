@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed, Permissions } = require("discord.js");
+const { Client, CommandInteraction, EmbedBuilder, ApplicationCommandOptionType, PermissionsBitField } = require("discord.js");
 const ms = require('ms');
 
 module.exports = {
@@ -8,23 +8,23 @@ module.exports = {
         {
             name: 'user',
             description: 'The User you want to perform the timeout on',
-            type: 'USER',
+            type: ApplicationCommandOptionType.User,
             required: true
         },
         {
             name: 'length',
             description: 'The duration of the timeout',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: true
         },
         {
             name: 'reason',
             description: 'The reason for the timeout',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: true
         }
     ],
-    permissions: [ Permissions.FLAGS.MODERATE_MEMBERS ],
+    permissions: [ PermissionsBitField.Flags.ModerateMembers ],
     /**
      *
      * @param {Client} client
@@ -32,7 +32,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (!interaction.guild.me.permissions.has('MODERATE_MEMBERS')) {
+        if (!interaction.guild.members.me.permissions.has('ModerateMembers')) {
             interaction.reply({ content: `I'm missing Permissions: \`TIMEOUT MEMBERS\``, ephemeral: true });
             return;
         }
@@ -54,8 +54,8 @@ module.exports = {
 
         await member.timeout(timeInMs, reason);
 
-        const timeoutEmbed = new MessageEmbed()
-            .setColor('YELLOW')
+        const timeoutEmbed = new EmbedBuilder()
+            .setColor('Yellow')
             .setTitle('Timeout')
             .setDescription(`${member} has been timed out for ${ms(length,{ long:true })}\n**Reason:** ${reason}\n**Responsible Moderator:** ${interaction.user.tag}`)
             .setTimestamp();

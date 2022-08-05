@@ -1,5 +1,5 @@
 const { 
-    Message, Client, MessageEmbed, MessageActionRow, MessageSelectMenu, Interaction 
+    Message, Client, EmbedBuilder, ActionRowBuilder, SelectMenuBuilder, Interaction 
 } = require("discord.js");
 
 module.exports = {
@@ -45,13 +45,13 @@ module.exports = {
             };
         });
 
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
             .setColor('DARK_AQUA')
             .setDescription(`Please choose a category in the dropdown menu.`);
 
         const components = (state) => [
-            new MessageActionRow().addComponents(
-                new MessageSelectMenu()
+            new ActionRowBuilder().addComponents(
+                new SelectMenuBuilder()
                     .setCustomId('help-menu')
                     .setPlaceholder("Please select a category")
                     .setDisabled(state)
@@ -87,10 +87,10 @@ module.exports = {
                 (x) => x.directory.toLowerCase() === directory
             );
 
-            const categoryEmbed = new MessageEmbed()
+            const categoryEmbed = new EmbedBuilder()
                 .setTitle(`${formatString(directory)} commands`)
                 .setDescription("Here are the list of commands")
-                .setColor('LUMINOUS_VIVID_PINK')
+                .setColor('LuminousVividPink')
                 .addFields(
                     category.commands.map((cmd) => {
                         return {

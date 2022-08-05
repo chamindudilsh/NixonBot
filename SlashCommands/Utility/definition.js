@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
 const axios = require('axios');
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
         {
             name: 'text',
             description: 'Text to look up definition for',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: true
         }
     ],
@@ -34,11 +34,11 @@ module.exports = {
             return;
         }
 
-        const udEmbed = new MessageEmbed()
+        const udEmbed = new EmbedBuilder()
             .setAuthor({ name: `Requested By ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
             .setTitle(answer.word)
             .setURL(answer.permalink)
-            .setColor('RANDOM')
+            .setColor('Random')
             .addField("DEFINITION", trim(answer.definition), false)
             .addField("EXAMPLE", trim(answer.example) + '.', false)
             .addField("RATINGS", `${answer.thumbs_up} :thumbsup: || ${answer.thumbs_down} :thumbsdown:`)

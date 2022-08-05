@@ -1,106 +1,106 @@
-const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, EmbedBuilder, ApplicationCommandOptionType } = require("discord.js");
 
 module.exports = {
     name: "audio-filter",
     description: "Manage Audio Filters",
     options: [
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'list-enabled',
             description: 'Get a List of Currently enabled filters'
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'disable-all',
             description: 'Disable all enabled filters'
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'bassboost',
             description: 'Toggle Bass Boost filter',
             options: [
                 {
                     name: 'toggle',
                     description: 'Turn on or Off the filter',
-                    type: 'BOOLEAN',
+                    type: ApplicationCommandOptionType.Boolean,
                     required: true
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'nightcore',
             description: 'Toggle Nightcore filter',
             options: [
                 {
                     name: 'toggle',
                     description: 'Turn on or Off the filter',
-                    type: 'BOOLEAN',
+                    type: ApplicationCommandOptionType.Boolean,
                     required: true
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'vaporwave',
             description: 'Toggle Vaporwave filter',
             options: [
                 {
                     name: 'toggle',
                     description: 'Turn on or Off the filter',
-                    type: 'BOOLEAN',
+                    type: ApplicationCommandOptionType.Boolean,
                     required: true
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'reverse',
             description: 'Toggle Reverse filter',
             options: [
                 {
                     name: 'toggle',
                     description: 'Turn on or Off the filter',
-                    type: 'BOOLEAN',
+                    type: ApplicationCommandOptionType.Boolean,
                     required: true
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'treble',
             description: 'Toggle Treble filter',
             options: [
                 {
                     name: 'toggle',
                     description: 'Turn on or Off the filter',
-                    type: 'BOOLEAN',
+                    type: ApplicationCommandOptionType.Boolean,
                     required: true
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'chorus',
             description: 'Toggle Chorus filter',
             options: [
                 {
                     name: 'toggle',
                     description: 'Turn on or Off the filter',
-                    type: 'BOOLEAN',
+                    type: ApplicationCommandOptionType.Boolean,
                     required: true
                 }
             ]
         },
         {
-            type: 'SUB_COMMAND',
+            type: ApplicationCommandOptionType.Subcommand,
             name: 'earrape',
             description: 'Toggle EarRape filter',
             options: [
                 {
                     name: 'toggle',
                     description: 'Turn on or Off the filter',
-                    type: 'BOOLEAN',
+                    type: ApplicationCommandOptionType.Boolean,
                     required: true
                 }
             ]
@@ -126,8 +126,8 @@ module.exports = {
         }
         const option = interaction.options.getBoolean('toggle');
 
-        const embed = new MessageEmbed()
-            .setColor('LUMINOUS_VIVID_PINK')
+        const embed = new EmbedBuilder()
+            .setColor('LuminousVividPink')
 
         if (args[0] === 'list-enabled') {
             let enabledFilters = await queue.getFiltersEnabled();

@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const got = require('got');
 
 module.exports = {
@@ -26,9 +26,9 @@ module.exports = {
 
             if(content[0].data.children[0].data.over_18 && !whitelist.includes(message.author.id)) {
                 if (!message.channel.nsfw) {
-                    const warnEmbed = new MessageEmbed()
+                    const warnEmbed = new EmbedBuilder()
                         .setTitle('Woah there, Stop!')
-                        .setColor('RED')
+                        .setColor('Red')
                         .setDescription(`This channel is not an NSFW channel.\nPlease use a NSFW channel instead.`)
                         .setImage('https://i.imgur.com/AwFgAIH.png')
                         .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
@@ -38,11 +38,11 @@ module.exports = {
                 }
             }
 
-            const redditEmbed = new MessageEmbed()
+            const redditEmbed = new EmbedBuilder()
                 .setTitle(`${content[0].data.children[0].data.title}`)
                 .setURL(`https://reddit.com${content[0].data.children[0].data.permalink}`)
                 .setImage(`${content[0].data.children[0].data.url}`)
-                .setColor('RANDOM')
+                .setColor('Random')
                 .setFooter({ text: `👍 ${content[0].data.children[0].data.ups} | 💬 ${content[0].data.children[0].data.num_comments}` });
 
             message.channel.send({ embeds: [redditEmbed] });

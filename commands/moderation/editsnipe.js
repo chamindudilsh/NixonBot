@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "editsnipe",
@@ -17,9 +17,9 @@ module.exports = {
             if(!o_snipe) return message.channel.send("There's nothing to esnipe.");
             if(!n_snipe) return message.channel.send("There's nothing to esnipe.");
 
-            const snipeEmbed = new MessageEmbed()
+            const snipeEmbed = new EmbedBuilder()
                 .setAuthor({ name: `Message By ${o_snipe.author.tag}`, iconURL: o_snipe.author.displayAvatarURL({ dynamic: true }) })
-                .setColor('RANDOM')
+                .setColor('Random')
                 .addField(`Old Message`, `${o_snipe.content}`, false)
                 .addField(`New Message`, `${n_snipe.content}`, false)
                 .setFooter({ text: `Sniped By ${message.author.username}` })

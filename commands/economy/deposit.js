@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 const Balance = require('../../models/schemas/balance');
 const Economy = require('../../utils/economy');
 
@@ -23,9 +23,9 @@ module.exports = {
             amount = Economy.formatNumber(args[0]);
         }
         if (isNaN(amount)) return message.reply({ content:`Give me a valid amount to deposit.` });
-        const depEmbed = new MessageEmbed()
+        const depEmbed = new EmbedBuilder()
             .setTitle(`Deposit`)
-            .setColor('RANDOM')
+            .setColor('Random')
             .setFooter({ text: `Depping makes em safe.` })
             .setTimestamp();
 

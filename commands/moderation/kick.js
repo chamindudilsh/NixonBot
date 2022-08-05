@@ -1,4 +1,4 @@
-const { Message, Client, MessageEmbed } = require("discord.js");
+const { Message, Client, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: "kick",
@@ -28,9 +28,9 @@ module.exports = {
 
         const reason = args.slice(1).join(" ") || "No Reason Provided.";
         
-        const kickEmbed = new MessageEmbed()
+        const kickEmbed = new EmbedBuilder()
             .setTitle('Kick')
-            .setColor('ORANGE')
+            .setColor('Orange')
             .setDescription(`**Offender :** ${member.user.tag} ${member.toString()} \n**Reason :** ${reason} \n**Responsible Moderator :** ${message.author.tag}`)
             .setFooter({text: `ID: ${member.user.id}`})
             .setTimestamp();
