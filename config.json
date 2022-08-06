@@ -1,7 +1,7 @@
 {
     "token": "OTIwMzE4NjI3NzU0OTM4NDE4.Ybingw.uX54B-0swlw6txr3e8Qj2sfK8DQ",
     "prefix": ";",
-    "version": "1.0.1",
+    "version": "2.0.1",
     "owner": "764793093458362408",
     "mongooseConnectionString": "mongodb+srv://phoenix:Virgo6356@discord-bot.c7zde.mongodb.net/Data"
 }
