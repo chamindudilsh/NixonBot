@@ -36,7 +36,6 @@ client.snipes = new Collection();
 client.oeditsnipes = new Collection();
 client.neditsnipes = new Collection();
 client.Cooldown = new Collection();
-client.buttons = new Collection();
 client.config = require("./config.json");
 client.giveawaysManager = giveawaysManager;
 
