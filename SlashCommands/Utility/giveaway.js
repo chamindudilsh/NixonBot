@@ -1,5 +1,4 @@
-const { Client, CommandInteraction, ApplicationCommandOptionType } = require("discord.js");
-const { ChannelType } = require("discord-api-types/v9");
+const { Client, CommandInteraction, ApplicationCommandOptionType, ChannelType } = require("discord.js");
 const ms = require('ms');
 
 module.exports = {

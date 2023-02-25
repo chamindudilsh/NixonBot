@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
 const translate = require('@iamtraction/google-translate');
 const ISO6391 = require('iso-639-1');
 const languageNames = new Intl.DisplayNames(['en'], {type: 'language'});
@@ -10,13 +10,13 @@ module.exports = {
         {
             name: 'text',
             description: 'Text to translate',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: true
         },
         {
             name: 'language',
             description: 'The language to Translate to, leave out for English',
-            type: 'STRING',
+            type: ApplicationCommandOptionType.String,
             required: false
         }
     ],
@@ -40,10 +40,10 @@ module.exports = {
             return interaction.reply({ content: `An error occured!`, ephemeral: true });
         });
 
-        const tr_embed = new MessageEmbed()
+        const tr_embed = new EmbedBuilder()
             .setAuthor({ name :`Requested By ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
             .setTitle('Translate')
-            .setColor('RANDOM')
+            .setColor('Random')
             .addField(`Translation`, `${translated.text}`, false)
             .addField(`Original Text`, `${query}`, false)
             .addField(`Detected Language`, `${languageNames.of(translated.from.language.iso)}`, true)

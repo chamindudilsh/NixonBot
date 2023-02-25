@@ -1,5 +1,4 @@
-const { Client, CommandInteraction, ApplicationCommandOptionType, EmbedBuilder, PermissionsBitField } = require("discord.js");
-const { ChannelType } = require("discord-api-types/v9");
+const { Client, CommandInteraction, ApplicationCommandOptionType, EmbedBuilder, PermissionsBitField, ChannelType } = require("discord.js");
 
 module.exports = {
     name: "editsnipe",

@@ -1,4 +1,4 @@
-const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
 const moment = require('moment');
 
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
         {
             name: 'user',
             description: 'The User you want to get info on',
-            type: 'USER',
+            type: ApplicationCommandOptionType.User,
             required: false
         }
     ],
@@ -23,7 +23,7 @@ module.exports = {
         const member = interaction.options.getMember('user') || interaction.member;
         const roles = member.roles.cache.sort((a, b) => b.position - a.position).map(r => r).join(' ').replace("@everyone", " ");
 
-        const uiEmbed = new MessageEmbed()
+        const uiEmbed = new EmbedBuilder()
             .setAuthor({ name: `${member.user.username}`, iconURL: member.user.displayAvatarURL({ dynamic: true }) })
             .setThumbnail(member.user.displayAvatarURL({ format: 'jpg', size: 1024, dynamic: true }))
             .setDescription(`[Avatar](${member.user.displayAvatarURL({ format: 'jpg', size: 1024, dynamic: true })})`)

@@ -1,5 +1,4 @@
-const { Client, CommandInteraction, ApplicationCommandOptionType, PermissionsBitField, EmbedBuilder } = require("discord.js");
-const { ChannelType } = require("discord-api-types/v9");
+const { Client, CommandInteraction, ApplicationCommandOptionType, PermissionsBitField, EmbedBuilder, ChannelType } = require("discord.js");
 const moment = require('moment');
 
 module.exports = {
