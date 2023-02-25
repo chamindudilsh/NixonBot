@@ -1,6 +1,6 @@
 {
   "name": "nixon-bot",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "description": "Nixon Bot",
   "main": "index.js",
   "scripts": {
@@ -12,12 +12,10 @@
   "dependencies": {
     "@iamtraction/google-translate": "^1.1.2",
     "axios": "^0.25.0",
-    "decancer": "^1.2.3",
-    "discord-api-types": "^0.37.0",
+    "decancer": "^1.5.4",
     "discord-giveaways": "^6.0.0",
     "discord-image-generation": "^1.4.13",
-    "discord.js": "^14.0.3",
-    "discord.js-akinator": "^4.0.1",
+    "discord.js": "^14.7.1",
     "express": "^4.18.2",
     "glob": "^7.2.0",
     "got": "^10.0.1",
