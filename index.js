@@ -3,6 +3,7 @@ const GiveawayManagerWithOwnDatabase = require('./models/giveawayModel');
 const { Player } = require("discord-player");
 const { Reverbnation } = require("@discord-player/extractor");
 const { registerPlayerEvents } = require('./utils/music-events');
+const keepAlive = require("./server");
 
 const client = new Client({
     intents: [
@@ -39,5 +40,6 @@ client.Cooldown = new Collection();
 client.config = require("./config.json");
 client.giveawaysManager = giveawaysManager;
 
+keepAlive();
 require("./handler")(client);
 client.login(client.config.token);
