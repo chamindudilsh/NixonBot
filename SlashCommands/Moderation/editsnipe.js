@@ -8,7 +8,7 @@ module.exports = {
             name: 'channel',
             description : 'channel to Editsnipe',
             type: ApplicationCommandOptionType.Channel,
-            channelTypes: ChannelType.GuildText
+            channelTypes: [ChannelType.GuildText]
         }
     ],
     permissions: [PermissionsBitField.Flags.ManageMessages],

@@ -38,7 +38,7 @@ module.exports = {
                     name: 'channel',
                     description: 'The channel to create giveaway, leave out to use the current channel.',
                     type: ApplicationCommandOptionType.Channel,
-                    channelTypes: ChannelType.GuildText,
+                    channelTypes: [ChannelType.GuildText],
                     required: false
                 }
             ]

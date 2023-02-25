@@ -9,7 +9,7 @@ module.exports = {
             name: 'channel',
             description: 'Channel to Snipe',
             type: ApplicationCommandOptionType.Channel,
-            channelTypes: ChannelType.GuildText,
+            channelTypes: [ChannelType.GuildText],
             required: false
         },
         {

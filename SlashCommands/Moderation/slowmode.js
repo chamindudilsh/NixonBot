@@ -20,7 +20,7 @@ module.exports = {
                     name: 'channel',
                     description: 'The channel to remove slowmode',
                     type: ApplicationCommandOptionType.Channel,
-                    channelTypes: ChannelType.GuildText,
+                    channelTypes: [ChannelType.GuildText],
                     required: false
                 }
             ]
@@ -34,7 +34,7 @@ module.exports = {
                     name: 'channel',
                     description: 'The channel to remove slowmode',
                     type: ApplicationCommandOptionType.Channel,
-                    channelTypes: ChannelType.GuildText,
+                    channelTypes: [ChannelType.GuildText],
                     required: false
                 }
             ]
