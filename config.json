@@ -2,6 +2,6 @@
     "token": "Bot Token Here",
     "prefix": ";",
     "version": "2.0.1",
-    "owner": "Owner's User ID",
+    "owner": "764793093458362408",
     "mongooseConnectionString": "MongoDB Compass Connection String"
 }
